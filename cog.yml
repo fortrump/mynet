@@ -1,0 +1,21 @@
+build:
+  gpu: true
+  python_version: "3.11.10"
+  python_packages:
+    - "torch"
+    - "diffusers==0.31.0"
+    - "transformers==4.46.2"
+    - "huggingface-hub==0.26.2"
+    - "protobuf==5.28.3"
+    - "sentencepiece==0.2.0"
+    - "accelerate==1.1.1"
+    - "opencv-python==4.10.0.84"
+    - "pillow==11.0.0"
+  system_packages:
+    - "libgl1-mesa-glx" # Required for opencv-python
+  run:
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/latest/download/pget_$(uname -s)_$(uname -m)" && chmod +x /usr/local/bin/pget
+
+# predict.py defines how predictions are run on your model
+
+predict: "predict.py:Predictor"
